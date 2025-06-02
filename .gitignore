@@ -396,3 +396,20 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# .NET MAUI specific
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.jar
+*.keystore
+*.ipa
+*.app
+*.xcuserstate
+*.DS_Store
+
+# MAUI build cache
+*.nuproj
+.platforms/
