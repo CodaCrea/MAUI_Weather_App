@@ -1,12 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppWeather.WeatherPage"
-             Title="WeatherPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppWeather.WeatherPage"
+    Title="WeatherPage">
+    <VerticalStackLayout
+        Padding="0"
+        Spacing="30">
+        <FlexLayout
+            Direction="Row"
+            JustifyContent="SpaceBetween"
+            AlignItems="Center"
+            Margin="20, 20, 20, 0">
+            <Frame
+                Padding="10"
+                CornerRadius="35"
+                HasShadow="True"
+                BorderColor="Black"
+                VerticalOptions="Start">
+                <Label
+                    Text="Votre location"
+                    FontSize="Default" />
+            </Frame>
+            <ImageButton
+                Source="search.png"
+                HeightRequest="30"
+                WidthRequest="30" />
+        </FlexLayout>
+        <FlexLayout
+            Direction="Column"
+            JustifyContent="Center">
+            <Label
+                x:Name="LblCity"
+                FontSize="40"
+                HorizontalOptions="Center"
+                TextColor="Gray"
+                Text="Paris" />
+            <Label
+                x:Name="LblDescription"
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                TextColor="SlateGray"
+                Text="Ciel éclairci" />
+        </FlexLayout>
+        <Image
+            Source="moon_cloud.png"
+            x:Name="ImgWeatherIcon"
+            VerticalOptions="Start"
+            HeightRequest="300"
+            WidthRequest="300" />
+        <FlexLayout
+            Direction="Row"
+            JustifyContent="SpaceAround">
+            <FlexLayout
+                Direction="Column"
+                JustifyContent="Center"
+                AlignItems="Center">
+                <Image
+                    Source="search.png"
+                    HeightRequest="30"
+                    WidthRequest="30" />
+                <Label
+                    x:Name="LblWind"
+                    HorizontalOptions="Center"
+                    TextColor="Black"
+                    FontSize="Medium"
+                    Text="88" />
+            </FlexLayout>
+        </FlexLayout>
     </VerticalStackLayout>
 </ContentPage>
