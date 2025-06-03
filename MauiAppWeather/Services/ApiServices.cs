@@ -13,7 +13,8 @@ namespace MauiAppWeather.Services
         /// <returns><see cref="Root"/> Une tâche asynchrone retournant un objet représentant les données météo ou null en cas d'erreur</returns>
         public static async Task<Root?> GetWeather(double latitude, double longitude)
         {
-            string url = $"https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid=6c019eaa27ed805ba17cabe0bc3454f1&units=metric&lang=fr";
+            AppConfig? _config = await AppConfig.LoadKeyAsync();
+            string url = $"https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={_config.ApiKey}&units=metric&lang=fr";
             return await GetWeatherApi(url);
         }
 
@@ -24,7 +25,8 @@ namespace MauiAppWeather.Services
         /// <returns><see cref="Root"/> Une tâche asynchrone retournant un objet représentant les données météo ou null en cas d'erreur</returns>
         public static async Task<Root?> GetWeatherByCity(string city)
         {
-            string url = $"api.openweathermap.org/data/2.5/forecast?q={city}&appid=6c019eaa27ed805ba17cabe0bc3454f1&units=metric&lang=fr";
+            AppConfig? _config = await AppConfig.LoadKeyAsync();
+            string url = $"api.openweathermap.org/data/2.5/forecast?q={city}&appid={_config.ApiKey}&units=metric&lang=fr";
             return await GetWeatherApi(url);
         }
 

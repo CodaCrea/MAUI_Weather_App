@@ -4,69 +4,135 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiAppWeather.WeatherPage"
     Title="WeatherPage">
-    <VerticalStackLayout
-        Padding="0"
-        Spacing="30">
-        <FlexLayout
-            Direction="Row"
-            JustifyContent="SpaceBetween"
-            AlignItems="Center"
-            Margin="20, 20, 20, 0">
-            <Frame
-                Padding="10"
-                CornerRadius="35"
-                HasShadow="True"
-                BorderColor="Black"
-                VerticalOptions="Start">
-                <Label
-                    Text="Votre location"
-                    FontSize="Default" />
-            </Frame>
-            <ImageButton
-                Source="search.png"
-                HeightRequest="30"
-                WidthRequest="30" />
-        </FlexLayout>
-        <FlexLayout
-            Direction="Column"
-            JustifyContent="Center">
-            <Label
-                x:Name="LblCity"
-                FontSize="40"
-                HorizontalOptions="Center"
-                TextColor="Gray"
-                Text="Paris" />
-            <Label
-                x:Name="LblDescription"
-                FontSize="Medium"
-                HorizontalOptions="Center"
-                TextColor="SlateGray"
-                Text="Ciel éclairci" />
-        </FlexLayout>
-        <Image
-            Source="moon_cloud.png"
-            x:Name="ImgWeatherIcon"
-            VerticalOptions="Start"
-            HeightRequest="300"
-            WidthRequest="300" />
-        <FlexLayout
-            Direction="Row"
-            JustifyContent="SpaceAround">
+    <!-- Body -->
+    <ScrollView
+        Padding="0">
+        <VerticalStackLayout
+            Spacing="30">
+            <!-- Header -->
             <FlexLayout
-                Direction="Column"
-                JustifyContent="Center"
-                AlignItems="Center">
-                <Image
+                Direction="Row"
+                JustifyContent="SpaceBetween"
+                AlignItems="Center"
+                Margin="20, 20, 20, 0">
+                <Frame
+                    Padding="10"
+                    CornerRadius="35"
+                    HasShadow="True"
+                    BorderColor="Black"
+                    VerticalOptions="Start">
+                    <Label
+                        Text="Votre location"
+                        FontSize="Default" />
+                </Frame>
+                <ImageButton
                     Source="search.png"
                     HeightRequest="30"
                     WidthRequest="30" />
-                <Label
-                    x:Name="LblWind"
-                    HorizontalOptions="Center"
-                    TextColor="Black"
-                    FontSize="Medium"
-                    Text="88" />
             </FlexLayout>
-        </FlexLayout>
-    </VerticalStackLayout>
+            <!-- Header -->
+            <!-- Main -->
+            <VerticalStackLayout
+                Spacing="10">
+                <Label
+                    x:Name="LblCity"
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    TextColor="Gray" />
+                <Label
+                    x:Name="LblDescription"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    TextColor="SlateGray" />
+                <Image
+                    x:Name="ImgWeatherIcon"
+                    VerticalOptions="Start"
+                    HeightRequest="300"
+                    WidthRequest="300" />
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="SpaceAround">
+                    <VerticalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="10">
+                        <Image
+                            Source="humidity.png"
+                            HeightRequest="30"
+                            WidthRequest="30" />
+                        <Label
+                            x:Name="LblHumidity"
+                            HorizontalOptions="Center"
+                            TextColor="DeepSkyBlue"
+                            FontSize="Medium" />
+                    </VerticalStackLayout>
+                    <Label
+                        x:Name="LblTemperature"
+                        VerticalOptions="Center"
+                        TextColor="Black"
+                        FontSize="40" />
+                    <VerticalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="10">
+                        <Image
+                            Source="wind.png"
+                            HeightRequest="30"
+                            WidthRequest="30" />
+                        <Label
+                            x:Name="LblWind"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            FontSize="Medium" />
+                    </VerticalStackLayout>
+                </FlexLayout>
+            </VerticalStackLayout>
+            <CollectionView
+                Grid.Row="4"
+                x:Name="CvWeather"
+                Margin="0, 50, 0, 0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Horizontal"
+                        ItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Grid.Row="0"
+                            RowDefinitions="Auto, Auto, Auto"
+                            Padding="2">
+                            <Image
+                                Grid.Row="0"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Start"
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                Source="{Binding Weather[0].CustomIcon}" />
+                            <Label
+                                Grid.Row="1"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                Text="{Binding Main.Temperature, StringFormat='{} {0} °C'}" />
+                            <Label
+                                Grid.Row="2"
+                                HorizontalOptions="Center"
+                                FontSize="Small"
+                                Text="{Binding DateTime}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!-- Main -->
+            <!-- Footer -->
+            <VerticalStackLayout
+                HorizontalOptions="Start">
+                <Label
+                    Margin="0, 50, 0, 0"
+                    Padding="20, 0, 0, 0"
+                    FontSize="Small"
+                    Text="-- © CodaCrea, tout droit réservé --" />
+            </VerticalStackLayout>
+            <!-- Footer -->
+        </VerticalStackLayout>
+    </ScrollView>
+    <!-- Body -->
 </ContentPage>
